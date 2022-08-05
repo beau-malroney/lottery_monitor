@@ -11,3 +11,8 @@ Upcoming changes:
 - Analysis on most common numbers and sets
 
 ## Setup
+- Navigate to code base
+
+`pip install -r requirements.txt`
+
+`python3 dash_app.py`
