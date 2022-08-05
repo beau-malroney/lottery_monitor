@@ -1,0 +1,6 @@
+*.pyc
+**/*.db
+__pycache__
+lottery_venv
+test.py
+crypto_monitor.py
