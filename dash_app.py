@@ -1,7 +1,5 @@
 from api.lottery_api.get_lottery_numbers import updateLotteryInfoDB, readFromDB
 from dash import Dash, html, dcc, Input, Output, callback, dash_table
-# external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-# app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 updateLotteryInfoDB()
 df = readFromDB("SELECT DrawDate, Number1, Number2, Number3, Number4, Number5, Number6, Number7, CurGpAnnuity, CurGpCash, NextGpAnnuity, NextGpCash FROM lottery_info where game_id = 17")
@@ -9,16 +7,10 @@ app = Dash(__name__, title='Lottery Monitor')
 server = app.server
 app.config.suppress_callback_exceptions = True
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
-    html.Div(children='''
-        Dash: A web application framework for your data.
-    '''),
-    html.Div(children=[
-        html.H1(children="Data Table",
-                style={
+    html.H1(children='Megamillions Info',
+            style={
                     'textAlign': 'center',
-                    "background": "yellow"})
-    ]),
+    }),
     html.Div([
     dash_table.DataTable(
         id='datatable-interactivity',
@@ -66,27 +58,24 @@ app.layout = html.Div(children=[
             'backgroundColor': 'rgb(210, 210, 210)',
             'color': 'black',   
             'fontWeight': 'bold'
+        },
+        style_table={
+            'overflowX': 'auto'
         }
     ),
-    html.Div(id='datatable-interactivity-container')
-    ]),
+    html.Div(id='datatable-interactivity-container'),
+    ], style={
+        'width':'95%',
+        'textAlign': 'center',
+        'margin-left': 'auto',
+        'margin-right': 'auto'
+    }),
     html.Div(children=[dcc.Markdown( 
                    " © 2022 [Beau-Malroney](https://beau-malroney.github.io/)  All Rights Reserved.")], 
                    style={
-                    'textAlign': 'center',
-                    "background": "yellow"}
-    )
+                    'textAlign': 'center'
+    })
 ])
-
-# @app.callback(
-#     Output('datatable-interactivity', 'style_data_conditional'),
-#     Input('datatable-interactivity', 'selected_columns')
-# )
-# def update_styles(selected_columns):
-#     return [{
-#         'if': { 'column_id': i },
-#         'background_color': '#D2F3FF'
-#     } for i in selected_columns]
 
 if __name__ == '__main__':
     app.run_server(debug=True)
