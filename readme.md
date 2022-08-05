@@ -9,3 +9,5 @@ Upcoming changes:
 - Check for your lottery numbers in past lotteries
 - Check 'hot' numbers
 - Analysis on most common numbers and sets
+
+## Setup
